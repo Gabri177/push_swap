@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 23:48:27 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/11 04:18:07 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/11 23:34:19 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ t_bool	l_print(t_list *l)
 t_list	*l_grep_index(t_list *l, int index)
 {
 	if (!l)
+		return (NULL);
+	if (index >= l_len (l) || index < 0)
 		return (NULL);
 	while (l)
 	{
@@ -59,16 +61,19 @@ t_bool	l_swap(t_list **l, int index1, int index2)
 t_bool	l_destory(t_list **l)
 {
 	t_list	*tem;
+	t_list	*head;
 
-	if (!l || !(*l))
+	head = *l;
+	if (!l || !(*l) || !l_len (*l))
 		return (FALSE);
-	while (*l)
+	while ((*l)->last)
 	{
 		tem = *l;
 		*l = (*l)->last;
 		free (tem);
+		tem = NULL;
 	}
-	*l = NULL;
+	*l = head;
 	return (TRUE);
 }
 

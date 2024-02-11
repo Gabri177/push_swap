@@ -6,66 +6,73 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 00:10:20 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/11 06:49:41 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/11 23:05:48 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_bool	l_rotate_nom(t_list *l)
+t_bool	l_rotate_nom(t_list *l, int *num_pa)
 {
 	int		tem;
-	//int		ind;
 	t_list	*pre;
 
-	if (!l)
+	if (!l || l_len (l) < 2)
 		return (FALSE);
+	sol_pa_pb (*num_pa);
+	*num_pa = 0;
 	tem = l->num;
-	//ind = l->index;
 	while (l->last)
 	{
 		l->num = l->last->num;
-		//l->index = l->last->index;
 		l = l->last;
 	}
 	l->num = tem;
-	//l->index = ind;
+	printf ("ra\n");
 	return (TRUE);
 }
 
-t_bool	l_rotate_rev(t_list *l)
+t_bool	l_rotate_rev(t_list *l, int *num_pa)
 {
 	int		tem;
-	//int		ind;
 	t_list	*pre;
 
-	if (!l)
+	if (!l || l_len (l) < 2)
 		return (FALSE);
+	sol_pa_pb (*num_pa);
+	*num_pa = 0;
 	pre = l_grep_index (l, l_len (l) - 1);
 	tem = pre->num;
-	//ind = pre->index;
 	while (pre->front)
 	{
 		pre->num = pre->front->num;
-		//pre->index = pre->front->index;
 		pre = pre->front;
 	}
-	pre->num = tem;
-	//pre->index = ind;
+	l_grep_index (l, 0)->num = tem;
+	printf ("rra\n");
 	return (TRUE);
 }
 
-t_bool	l_push(t_list **l1, t_list **l2)
+t_bool	l_push(t_list **l1, t_list **l2, t_bool isa, int *ispa)
 {
 	t_list	*tem;
 
-	if (!l1 || !(*l1) || !l2)
+	if (!l1 || !(*l1) || !l2 || !l_len(*l1))
 		return (FALSE);
 	l_add_front (l2, l_grep_index (*l1, 0)->num);
+	if (l_len (*l1) == 1)
+	{
+		free (*l1);
+		*l1 = NULL;
+	}
 	tem = l_grep_index (*l1, 1);
 	free (*l1);
 	*l1 = tem;
 	l_fresh_index (*l1);
+	if (isa)
+		*ispa += 1;
+	else
+		*ispa -= 1;
 	return (TRUE);
 }
 

@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 21:49:10 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/11 04:08:51 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/11 20:49:53 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ t_list	*l_grep_index(t_list *l, int index);
 t_bool	l_swap(t_list **l, int index1, int index2);
 t_bool	l_destory(t_list **l);
 t_bool	l_isorden(t_list *l);
-t_bool	l_rotate_nom(t_list *l);
-t_bool	l_rotate_rev(t_list *l);
-t_bool	l_push(t_list **l1, t_list **l2);
+t_bool	l_rotate_nom(t_list *l, int *num_pa);
+t_bool	l_rotate_rev(t_list *l, int *num_pa);
+t_bool	l_push(t_list **l1, t_list **l2, t_bool isa, int *ispa);
 t_bool	l_swap_index(t_list *l, int i1, int i2);
 t_bool	l_sort(t_list *l);
 t_bool	l_copy(t_list *ori, t_list **new);
@@ -51,5 +51,5 @@ t_bool	l_neg_to_pos(t_list *ref, t_list *ori);
 
 t_bool	is_zero_bit(int num, int p_bit);
 int		ft_atoi(const char *str);
-
+void	sol_pa_pb(int num_pa);
 #endif
