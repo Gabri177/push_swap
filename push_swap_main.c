@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 02:36:57 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/11 23:43:20 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/12 00:40:04 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,10 +113,10 @@ int	main(int arc, char **argv)
 	l_copy (ori, &cpy); // 
 	l_sort (cpy); // 对拷贝队列进行排序
 	l_neg_to_pos (cpy, ori); // 将原来的数据用排序后的拷贝的序号替代 (全是基数, 可以用来进行基数排序)
-	//l_destory (&cpy);
+	l_destory (&cpy);
 	//l_print (ori);
 	solucion (ori, asis, arc);
 	//l_print (ori);
-	l_destory (&ori);
+	//l_destory (&ori);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 23:48:27 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/11 23:34:19 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/12 00:40:29 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ t_bool	l_destory(t_list **l)
 		free (tem);
 		tem = NULL;
 	}
-	*l = head;
+	*l = NULL;
 	return (TRUE);
 }
 
