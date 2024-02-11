@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 02:36:57 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/11 05:19:10 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/11 07:25:23 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,14 @@ int	main(int arc, char **argv)
 		}
 		i ++;
 	}
-	l_copy (ori, &cpy); // 进行拷贝
+	//l_print (ori);
+	l_copy (ori, &cpy); // 
 	l_sort (cpy); // 对拷贝队列进行排序
 	l_neg_to_pos (cpy, ori); // 将原来的数据用排序后的拷贝的序号替代 (全是基数, 可以用来进行基数排序)
+	//l_print (cpy);
 	//l_print (ori);
 	num_bit = 0;
-	while (!l_isorden (ori))
+	while (!l_isorden (ori) || l_len (ori) != arc - 1)
 	{
 		i = 0;
 		len = l_len(ori);
@@ -88,29 +90,34 @@ int	main(int arc, char **argv)
 			if (is_zero_bit (l_grep_index (ori, 0)->num, num_bit))
 			{
 				l_push (&ori, &asis);
-				printf ("Push: a -> b\n");
+				printf ("pa\n");
 			}
 			else
 			{
-				l_rotate_nom (ori);
-				printf ("Rotate: -> a\n");
+				if (l_len (ori) != 1)
+				{
+					l_rotate_nom (ori);
+					printf ("ra\n");
+				}
 			}
 			i ++;
+			if (l_isorden (ori) && !l_len (asis))
+				break ;
 		}
 		num_bit ++;
 		while (l_len (asis))
 		{
 			l_push (&asis, &ori);
-			printf ("Push: b -> a \n");
+			printf ("pb\n");
 		}
 		// printf ("=====ori=====\n");
-		// l_print (ori);
+		//l_print (ori);
 		// printf ("=====ori=====\n\n");
 		// printf ("=====asis=====\n");
 		// l_print (asis);
 		// printf ("=====asis=====\n\n");
 	}
-	l_print (ori);
+	//l_print (ori);
 	l_destory (&ori);
 	l_destory (&cpy);
 	return (0);

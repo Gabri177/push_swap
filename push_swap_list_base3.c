@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 00:10:20 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/11 04:00:13 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/11 06:49:41 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,9 @@ t_bool	l_sort(t_list *l)
 	int	len;
 
 	i = 0;
-	len = l_len (l);
 	if (!l)
 		return (FALSE);
+	len = l_len (l);
 	while (i < len - 1)
 	{
 		j = 0;
