@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 21:54:20 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/10 23:52:52 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/12 01:23:15 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ t_bool	l_add_front(t_list **l, int val)
 {
 	t_list	*new;
 
+	if (!l)
+		return (FALSE);
 	new = l_new (val);
 	if (!new)
-		return (FALSE);
-	if (!l)
 		return (FALSE);
 	if (!(*l))
 		*l = new;

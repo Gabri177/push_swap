@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 00:10:20 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/11 23:05:48 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/12 01:18:29 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,20 +59,22 @@ t_bool	l_push(t_list **l1, t_list **l2, t_bool isa, int *ispa)
 
 	if (!l1 || !(*l1) || !l2 || !l_len(*l1))
 		return (FALSE);
-	l_add_front (l2, l_grep_index (*l1, 0)->num);
-	if (l_len (*l1) == 1)
+	tem = *l1;
+	if (tem->last)
 	{
-		free (*l1);
-		*l1 = NULL;
+		*l1 = (*l1)->last;
+		(*l1)->front = NULL;
 	}
-	tem = l_grep_index (*l1, 1);
-	free (*l1);
-	*l1 = tem;
-	l_fresh_index (*l1);
+	else
+		*l1 = NULL;
+	l_add_front (l2, tem->num);
+	free (tem);
 	if (isa)
 		*ispa += 1;
 	else
 		*ispa -= 1;
+	if (*l1)
+		l_fresh_index (*l1);
 	return (TRUE);
 }
 
