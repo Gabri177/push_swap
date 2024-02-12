@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 02:36:57 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/12 01:24:28 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/12 01:29:14 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,22 +57,6 @@ void	sol_pa_pb(int num_pa)
 // 	l_print (ori);
 // }
 
-void	test_destory(t_list **ori)
-{
-	t_list	*tem;
-
-	if (!ori || !(*ori))
-		return ;
-	while (*ori)
-	{
-		tem = *ori;
-		*ori = (*ori)->last;
-		if (tem)
-			free (tem);
-		tem = NULL;
-	}
-}
-
 void	solucion(t_list *ori, t_list *asis, int arc)
 {
 	int	num_bit;
@@ -81,7 +65,6 @@ void	solucion(t_list *ori, t_list *asis, int arc)
 
 	ispa = 0;
 	num_bit = 0;
-	//l_print (ori);
 	while (!l_isorden (ori) || l_len (asis))
 	{
 		len = l_len(ori);
@@ -99,7 +82,7 @@ void	solucion(t_list *ori, t_list *asis, int arc)
 			l_push (&asis, &ori, FALSE, &ispa);
 	}
 	sol_pa_pb (ispa);
-	//l_print (ori);
+	l_destory (&ori);
 }
 
 int	main(int arc, char **argv)
@@ -137,7 +120,7 @@ int	main(int arc, char **argv)
 	// if (!cpy && !asis)
 	// 	printf ("!!!!\n");
 	//l_print (ori);
-	//test_destory (&ori);
+	//l_destory (&ori);
 	//l_push_cls (&ori);
 	return (0);
 }
