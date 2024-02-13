@@ -45,10 +45,8 @@ t_list	*l_grep_val(t_list *l, int val)
 t_bool	l_neg_to_pos(t_list *ref, t_list *ori)
 {
 	int	i;
-	int	n;
 
 	i = 0;
-	n = 0;
 	if (!ref || !ori)
 		return (FALSE);
 	while (i < l_len (ori))

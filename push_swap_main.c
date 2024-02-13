@@ -57,7 +57,7 @@ void	sol_pa_pb(int num_pa)
 // 	l_print (ori);
 // }
 
-void	solucion(t_list *ori, t_list *asis, int arc)
+void	solucion(t_list *ori, t_list *asis)
 {
 	int	num_bit;
 	int	len;
@@ -91,7 +91,6 @@ int	main(int arc, char **argv)
 	t_list	*ori; // 原始队列
 	t_list	*cpy; // 原始队列的拷贝
 	t_list	*asis; //辅助队列  // 注意原队列添加元素从尾部加入, asis队列加元素从头部加入.
-	int		len;
 
 	i = 1;
 	ori = NULL;
@@ -116,7 +115,7 @@ int	main(int arc, char **argv)
 	l_neg_to_pos (cpy, ori); // 将原来的数据用排序后的拷贝的序号替代 (全是基数, 可以用来进行基数排序)
 	l_destory (&cpy);
 	//l_print (ori);
-	solucion (ori, asis, arc);
+	solucion (ori, asis);
 	// if (!cpy && !asis)
 	// 	printf ("!!!!\n");
 	//l_print (ori);

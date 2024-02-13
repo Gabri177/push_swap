@@ -15,7 +15,6 @@
 t_bool	l_rotate_nom(t_list *l, int *num_pa)
 {
 	int		tem;
-	t_list	*pre;
 
 	if (!l || l_len (l) < 2)
 		return (FALSE);
