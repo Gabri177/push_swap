@@ -81,7 +81,7 @@ int	main(int arc, char **argv)
 			err_control (&ori, ERR_READ);
 		i ++;
 	}
-	l_copy (ori, &cpy); // 
+	l_copy (ori, &cpy);
 	l_sort (cpy); // 对拷贝队列进行排序
 	if (!rept_check (cpy)) //如果有重复 销毁cpy
 		err_control (&ori, ERR_REPETIR); //销毁ori

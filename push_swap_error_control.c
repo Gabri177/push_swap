@@ -25,6 +25,9 @@ t_bool	num_check(char *str)
 
 t_bool	rept_check(t_list *l)
 {
+	t_list	*head;
+
+	head = l;
 	if (!l)
 	{
 		l_destory (&l);
@@ -34,7 +37,7 @@ t_bool	rept_check(t_list *l)
 	{
 		if (l->num == l->last->num)
 		{
-			l_destory (&l);
+			l_destory (&head);
 			return (FALSE);
 		}
 		l = l->last;
