@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 08:28:33 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/13 11:49:56 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/13 12:18:13 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,18 @@ void	arc_check(int arc, t_list **ori, t_list **cpy, t_list **asis)
 
 t_bool	num_check(char *str)
 {
-	char	*head;
-
-	head = str;
 	if (!str || !*str)
 		return (FALSE);
+	if (*str == '-')
+		str ++;
 	while (*str)
 	{
 		if ((*str < '0' || *str > '9'))
 			return (FALSE);
-		if (*str == '-' && str != head)
-			return (FALSE);
 		str ++;
 	}
+	if (*(str - 1) == '-')
+		return (FALSE);
 	return (TRUE);
 }
 
