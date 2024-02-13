@@ -36,27 +36,6 @@ void	sol_pa_pb(int num_pa)
 	return ;
 }
 
-// void	sol_rotate(t_list *ori, int *num_pa, int num_bit)
-// {
-// 	int	i;
-
-// 	i = 1;
-// 	l_print (ori);
-// 	while (i < l_len (ori))
-// 	{
-// 		if (is_zero_bit (l_grep_index (ori, i)->num, num_bit))
-// 		{
-// 			if (i <= l_len (ori) / 2)
-// 				l_rotate_nom (ori, num_pa);
-// 			else
-// 				l_rotate_rev (ori, num_pa);
-// 		}
-// 		i ++;
-// 	}
-// 	printf ("numbit : %d \n", num_bit);
-// 	l_print (ori);
-// }
-
 void	solucion(t_list *ori, t_list *asis)
 {
 	int	num_bit;
@@ -85,6 +64,29 @@ void	solucion(t_list *ori, t_list *asis)
 	l_destory (&ori);
 }
 
+void	arc_check(int arc, t_list **ori, t_list **cpy, t_list **asis)
+{
+	if (arc == 1)
+	{
+		printf ("No se han introducido los numeros !!!\n");
+		exit (EXIT_FAILURE);
+	}
+	*ori = NULL;
+	*cpy = NULL;
+	*asis = NULL;
+}
+
+t_bool	num_check(char *str)
+{
+	while (*str)
+	{
+		if (*str < '0' || *str > '9')
+			return (FALSE);
+		str ++;
+	}
+	return (TRUE);
+}
+
 int	main(int arc, char **argv)
 {
 	int		i;
@@ -93,17 +95,10 @@ int	main(int arc, char **argv)
 	t_list	*asis; //辅助队列  // 注意原队列添加元素从尾部加入, asis队列加元素从头部加入.
 
 	i = 1;
-	ori = NULL;
-	cpy = NULL;
-	asis = NULL;
-	if (arc == 1)
-	{
-		printf ("No se han introducido los numeros !!!\n");
-		return (1);
-	}
+	arc_check (arc, &ori, &cpy, &asis);
 	while (i < arc)
 	{
-		if (l_add_tail (&ori, ft_atoi (argv[i])) == FALSE)
+		if (!l_add_tail (&ori, ft_atoi (argv[i])) || !num_check(argv[i]))
 		{
 			printf ("Establecimiento de list error!\n");
 			return (1);
@@ -113,13 +108,14 @@ int	main(int arc, char **argv)
 	l_copy (ori, &cpy); // 
 	l_sort (cpy); // 对拷贝队列进行排序
 	l_neg_to_pos (cpy, ori); // 将原来的数据用排序后的拷贝的序号替代 (全是基数, 可以用来进行基数排序)
+	if (!l_grep_val (ori, l_len (ori) - 1))
+	{
+		printf ("ERROR :Hay numeros repetidos!\n");
+		l_destory (&cpy);
+		l_destory (&ori);
+		return (0);
+	}
 	l_destory (&cpy);
-	//l_print (ori);
 	solucion (ori, asis);
-	// if (!cpy && !asis)
-	// 	printf ("!!!!\n");
-	//l_print (ori);
-	//l_destory (&ori);
-	//l_push_cls (&ori);
 	return (0);
 }

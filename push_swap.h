@@ -52,4 +52,5 @@ t_bool	l_neg_to_pos(t_list *ref, t_list *ori);
 t_bool	is_zero_bit(int num, int p_bit);
 int		ft_atoi(const char *str);
 void	sol_pa_pb(int num_pa);
+void	solucion(t_list *ori, t_list *asis);
 #endif
