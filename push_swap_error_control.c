@@ -23,6 +23,25 @@ t_bool	num_check(char *str)
 	return (TRUE);
 }
 
+t_bool	rept_check(t_list *l)
+{
+	if (!l)
+	{
+		l_destory (&l);
+		return (FALSE);
+	}
+	while (l->last)
+	{
+		if (l->num == l->last->num)
+		{
+			l_destory (&l);
+			return (FALSE);
+		}
+		l = l->last;
+	}
+	return (TRUE);
+}
+
 void	err_control(t_list **l, t_err type)
 {
 	if (type == ERR_READ)

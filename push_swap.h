@@ -60,5 +60,6 @@ void	solucion(t_list *ori, t_list *asis);
 
 void	arc_check(int arc, t_list **ori, t_list **cpy, t_list **asis);
 t_bool	num_check(char *str);
+t_bool	rept_check(t_list *l);
 void	err_control(t_list **l, t_err type);
 #endif

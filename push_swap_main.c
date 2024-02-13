@@ -75,15 +75,17 @@ int	main(int arc, char **argv)
 	arc_check (arc, &ori, &cpy, &asis);
 	while (i < arc)
 	{
-		if (!l_add_tail (&ori, ft_atoi (argv[i])) || !num_check(argv[i]))
+		if (!num_check(argv[i]))
+			err_control (&ori, ERR_LETRA);
+		if (!l_add_tail (&ori, ft_atoi (argv[i])))
 			err_control (&ori, ERR_READ);
 		i ++;
 	}
 	l_copy (ori, &cpy); // 
 	l_sort (cpy); // 对拷贝队列进行排序
+	if (!rept_check (cpy)) //如果有重复 销毁cpy
+		err_control (&ori, ERR_REPETIR); //销毁ori
 	l_neg_to_pos (cpy, ori); // 将原来的数据用排序后的拷贝的序号替代 (全是基数, 可以用来进行基数排序), 用完以后销毁cpy
-	if (!l_grep_val (ori, l_len (ori) - 1))
-		err_control (&ori, ERR_REPETIR);
-	solucion (ori, asis);
+	solucion (ori, asis); //解决完销毁ori
 	return (0);
 }
