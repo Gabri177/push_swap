@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 00:10:20 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/12 01:18:29 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/13 08:38:15 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_bool	l_rotate_nom(t_list *l, int *num_pa)
 		l = l->last;
 	}
 	l->num = tem;
-	printf ("ra\n");
+	ft_puts ("ra\n");
 	return (TRUE);
 }
 
@@ -48,7 +48,7 @@ t_bool	l_rotate_rev(t_list *l, int *num_pa)
 		pre = pre->front;
 	}
 	l_grep_index (l, 0)->num = tem;
-	printf ("rra\n");
+	ft_puts ("rra\n");
 	return (TRUE);
 }
 

@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 23:48:27 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/12 00:47:33 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/13 08:43:16 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,18 @@ t_bool	l_print(t_list *l)
 {
 	if (!l)
 		return (FALSE);
-	printf ("----------\n");
+	ft_puts ("----------\n");
 	while (l)
 	{
-		printf ("INDEX: %d, val: %d\n", l->index, l->num);
+		ft_puts ("INDEX:");
+		ft_putnbr (l->index);
+		ft_puts ("  ");
+		ft_puts ("VAL:");
+		ft_putnbr (l->num);
+		ft_puts ("  \n");
 		l = l->last;
 	}
-	printf ("^^^^^^^^^^\n\n");
+	ft_puts ("^^^^^^^^^^\n\n");
 	return (TRUE);
 }
 

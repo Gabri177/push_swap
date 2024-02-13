@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 23:56:16 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/11 03:57:21 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/13 10:08:01 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ static int	ft_isspace(int c)
 	return (0);
 }
 
-int	ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
-	int	result;
-	int	i;
-	int	sign;
+	long	result;
+	long	i;
+	int		sign;
 
 	result = 0;
 	i = 0;

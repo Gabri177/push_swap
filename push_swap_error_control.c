@@ -1,12 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap_error_control.c                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/13 08:28:33 by yugao             #+#    #+#             */
+/*   Updated: 2024/02/13 11:49:56 by yugao            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	arc_check(int arc, t_list **ori, t_list **cpy, t_list **asis)
 {
 	if (arc == 1)
-	{
-		printf ("No se han introducido los numeros !!!\n");
 		exit (EXIT_FAILURE);
-	}
 	*ori = NULL;
 	*cpy = NULL;
 	*asis = NULL;
@@ -14,9 +23,16 @@ void	arc_check(int arc, t_list **ori, t_list **cpy, t_list **asis)
 
 t_bool	num_check(char *str)
 {
+	char	*head;
+
+	head = str;
+	if (!str || !*str)
+		return (FALSE);
 	while (*str)
 	{
-		if ((*str < '0' || *str > '9')&& *str != '-')
+		if ((*str < '0' || *str > '9'))
+			return (FALSE);
+		if (*str == '-' && str != head)
 			return (FALSE);
 		str ++;
 	}
@@ -47,12 +63,15 @@ t_bool	rept_check(t_list *l)
 
 void	err_control(t_list **l, t_err type)
 {
+	char	*error_message;
+
+	error_message = "Error\n";
 	if (type == ERR_READ)
-		printf ("Establecimiento de list error!\n");
+		write(2, error_message, 6);
 	else if (type == ERR_LETRA)
-		printf ("Hay letra mezclada dentro de los argumentos!\n");
+		write(2, error_message, 6);
 	else if (type == ERR_REPETIR)
-		printf ("ERROR :Hay numeros repetidos!\n");
+		write(2, error_message, 6);
 	if (l_len (*l) != 0)
 		l_destory (l);
 	exit (EXIT_FAILURE);

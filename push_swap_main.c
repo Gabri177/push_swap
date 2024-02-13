@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 02:36:57 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/12 01:29:14 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/13 10:11:09 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ void	sol_pa_pb(int num_pa)
 	{
 		while (i < -num_pa)
 		{
-			printf ("pa\n");
+			ft_puts ("pa\n");
 			i ++;
 		}
 		return ;
 	}
 	while (i < num_pa)
 	{
-		printf ("pb\n");
+		ft_puts ("pb\n");
 		i ++;
 	}
 	return ;
@@ -67,25 +67,26 @@ void	solucion(t_list *ori, t_list *asis)
 int	main(int arc, char **argv)
 {
 	int		i;
-	t_list	*ori; // 原始队列
-	t_list	*cpy; // 原始队列的拷贝
-	t_list	*asis; //辅助队列  // 注意原队列添加元素从尾部加入, asis队列加元素从头部加入.
+	t_list	*ori;
+	t_list	*cpy;
+	t_list	*asis;
 
 	i = 1;
 	arc_check (arc, &ori, &cpy, &asis);
 	while (i < arc)
 	{
-		if (!num_check(argv[i]))
+		if (!num_check(argv[i]) || ft_atoi (argv[i]) > INT_MAX
+			|| ft_atoi (argv[i]) < INT_MIN)
 			err_control (&ori, ERR_LETRA);
 		if (!l_add_tail (&ori, ft_atoi (argv[i])))
 			err_control (&ori, ERR_READ);
 		i ++;
 	}
 	l_copy (ori, &cpy);
-	l_sort (cpy); // 对拷贝队列进行排序
-	if (!rept_check (cpy)) //如果有重复 销毁cpy
-		err_control (&ori, ERR_REPETIR); //销毁ori
-	l_neg_to_pos (cpy, ori); // 将原来的数据用排序后的拷贝的序号替代 (全是基数, 可以用来进行基数排序), 用完以后销毁cpy
-	solucion (ori, asis); //解决完销毁ori
+	l_sort (cpy);
+	if (!rept_check (cpy))
+		err_control (&ori, ERR_REPETIR);
+	l_neg_to_pos (cpy, ori);
+	solucion (ori, asis);
 	return (0);
 }
