@@ -64,29 +64,6 @@ void	solucion(t_list *ori, t_list *asis)
 	l_destory (&ori);
 }
 
-void	arc_check(int arc, t_list **ori, t_list **cpy, t_list **asis)
-{
-	if (arc == 1)
-	{
-		printf ("No se han introducido los numeros !!!\n");
-		exit (EXIT_FAILURE);
-	}
-	*ori = NULL;
-	*cpy = NULL;
-	*asis = NULL;
-}
-
-t_bool	num_check(char *str)
-{
-	while (*str)
-	{
-		if (*str < '0' || *str > '9')
-			return (FALSE);
-		str ++;
-	}
-	return (TRUE);
-}
-
 int	main(int arc, char **argv)
 {
 	int		i;
@@ -99,23 +76,14 @@ int	main(int arc, char **argv)
 	while (i < arc)
 	{
 		if (!l_add_tail (&ori, ft_atoi (argv[i])) || !num_check(argv[i]))
-		{
-			printf ("Establecimiento de list error!\n");
-			return (1);
-		}
+			err_control (&ori, ERR_READ);
 		i ++;
 	}
 	l_copy (ori, &cpy); // 
 	l_sort (cpy); // 对拷贝队列进行排序
-	l_neg_to_pos (cpy, ori); // 将原来的数据用排序后的拷贝的序号替代 (全是基数, 可以用来进行基数排序)
+	l_neg_to_pos (cpy, ori); // 将原来的数据用排序后的拷贝的序号替代 (全是基数, 可以用来进行基数排序), 用完以后销毁cpy
 	if (!l_grep_val (ori, l_len (ori) - 1))
-	{
-		printf ("ERROR :Hay numeros repetidos!\n");
-		l_destory (&cpy);
-		l_destory (&ori);
-		return (0);
-	}
-	l_destory (&cpy);
+		err_control (&ori, ERR_REPETIR);
 	solucion (ori, asis);
 	return (0);
 }

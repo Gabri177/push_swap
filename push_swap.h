@@ -17,6 +17,9 @@
 # include <stdlib.h>
 # define TRUE 1
 # define FALSE 0
+# define ERR_REPETIR 1
+# define ERR_LETRA 2
+# define ERR_READ 3
 
 typedef struct s_list
 {
@@ -27,6 +30,7 @@ typedef struct s_list
 }	t_list;
 
 typedef int	t_bool;
+typedef int	t_err;
 
 //---LIST---
 t_bool	l_fresh_index(t_list *l);
@@ -53,4 +57,8 @@ t_bool	is_zero_bit(int num, int p_bit);
 int		ft_atoi(const char *str);
 void	sol_pa_pb(int num_pa);
 void	solucion(t_list *ori, t_list *asis);
+
+void	arc_check(int arc, t_list **ori, t_list **cpy, t_list **asis);
+t_bool	num_check(char *str);
+void	err_control(t_list **l, t_err type);
 #endif

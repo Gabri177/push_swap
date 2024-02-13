@@ -1,5 +1,5 @@
 NAME = push_swap
-CFILE = push_swap_dig_base.c push_swap_list_base1.c push_swap_list_base2.c push_swap_list_base3.c push_swap_list_base4.c push_swap_main.c
+CFILE = push_swap_dig_base.c push_swap_list_base1.c push_swap_list_base2.c push_swap_list_base3.c push_swap_list_base4.c push_swap_main.c push_swap_error_control.c
 OFILE = $(CFILE:.c=.o)
 FLAG = -Wall -Wextra -Werror
 

@@ -55,5 +55,6 @@ t_bool	l_neg_to_pos(t_list *ref, t_list *ori)
 			l_grep_index (ori, i)->num)->index;
 		i ++;
 	}
+	l_destory (&ref);
 	return (TRUE);
 }
