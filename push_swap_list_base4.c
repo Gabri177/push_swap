@@ -6,13 +6,13 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 03:45:06 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/11 04:08:56 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/14 03:25:36 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_bool	l_copy(t_list *ori, t_list **new)
+t_bool	l_copy_sort(t_list *ori, t_list **new)
 {
 	int	i;
 	int	len;
@@ -26,6 +26,7 @@ t_bool	l_copy(t_list *ori, t_list **new)
 		l_add_tail (new, l_grep_index (ori, i)->num);
 		i ++;
 	}
+	l_sort (*new);
 	return (TRUE);
 }
 
@@ -56,5 +57,14 @@ t_bool	l_neg_to_pos(t_list *ref, t_list *ori)
 		i ++;
 	}
 	l_destory (&ref);
+	return (TRUE);
+}
+
+t_bool	l_sa(t_list *ori)
+{
+	if (!ori)
+		return (FALSE);
+	l_swap (&ori, 0, 1);
+	ft_puts ("sa\n");
 	return (TRUE);
 }

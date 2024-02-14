@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 21:49:10 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/13 10:09:19 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/14 03:25:44 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,15 @@ t_bool	l_rotate_rev(t_list *l, int *num_pa);
 t_bool	l_push(t_list **l1, t_list **l2, t_bool isa, int *ispa);
 t_bool	l_swap_index(t_list *l, int i1, int i2);
 t_bool	l_sort(t_list *l);
-t_bool	l_copy(t_list *ori, t_list **new);
+t_bool	l_copy_sort(t_list *ori, t_list **new);
 t_list	*l_grep_val(t_list *l, int val);
 t_bool	l_neg_to_pos(t_list *ref, t_list *ori);
+t_bool	l_sa(t_list *ori);
+int		l_mid_val(t_list *ori);
 //---LIST---
 
 t_bool	is_zero_bit(int num, int p_bit);
-long		ft_atoi(const char *str);
+long	ft_atoi(const char *str);
 void	sol_pa_pb(int num_pa);
 void	solucion(t_list *ori, t_list *asis);
 

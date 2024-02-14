@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 02:36:57 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/13 13:13:49 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/14 03:25:50 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,54 @@ void	sol_pa_pb(int num_pa)
 		i ++;
 	}
 	return ;
+}
+
+t_bool	sol_tres(t_list *ori)
+{
+	int	basura;
+	int	m;
+
+	basura = 0;
+	m = l_mid_val (ori);
+	if (l_grep_index (ori, 0)->num < m && l_grep_index (ori, 1)->num > m)
+		return (l_sa (ori), l_rotate_nom (ori, &basura));
+	else if (l_grep_index (ori, 0)->num == m && l_grep_index (ori, 1)->num < m)
+		return (l_sa (ori));
+	else if (l_grep_index (ori, 0)->num == m && l_grep_index (ori, 1)->num > m)
+		return (l_rotate_rev(ori, &basura));
+	else if (l_grep_index (ori, 0)->num > m && l_grep_index (ori, 1)->num == m)
+		return (l_sa (ori), l_rotate_rev (ori, &basura));
+	else if (l_grep_index (ori, 0)->num > m && l_grep_index (ori, 1)->num < m)
+		return (l_rotate_nom(ori, &basura));
+	return (TRUE);
+}
+
+void	sol_cinco(t_list *ori, t_list *asis)
+{
+	static int	basura;
+	static int	indi;
+
+	while (l_len(ori) != 3)
+	{
+		while (l_grep_index (ori, 0)->num != indi)
+		{
+			if (l_grep_val (ori, indi)->index < l_len (ori) / 2)
+				l_rotate_nom (ori, &basura);
+			else
+				l_rotate_rev (ori, &basura);
+		}
+		l_push (&ori, &asis, TRUE, &basura);
+		ft_puts ("pb\n");
+		basura = 0;
+		indi ++;
+	}
+	sol_tres (ori);
+	while (l_len (asis))
+	{
+		l_push (&asis, &ori, FALSE, &basura);
+		ft_puts ("pa\n");
+	}
+	l_destory (&ori);
 }
 
 void	solucion(t_list *ori, t_list *asis)
@@ -82,11 +130,13 @@ int	main(int arc, char **argv)
 			err_control (&ori, ERR_READ);
 		i ++;
 	}
-	l_copy (ori, &cpy);
-	l_sort (cpy);
+	l_copy_sort (ori, &cpy);
 	if (!rept_check (cpy))
 		err_control (&ori, ERR_REPETIR);
 	l_neg_to_pos (cpy, ori);
-	solucion (ori, asis);
+	if (arc <= 6 && arc >= 4 && !l_isorden (ori))
+		sol_cinco (ori, asis);
+	else
+		solucion (ori, asis);
 	return (0);
 }

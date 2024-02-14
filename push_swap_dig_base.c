@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 23:56:16 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/13 10:08:01 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/14 03:26:07 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,22 @@ long	ft_atoi(const char *str)
 		i ++;
 	}
 	return (result * sign);
+}
+
+int	l_mid_val(t_list *ori)
+{
+	int	a;
+	int	b;
+	int	c;
+
+	a = l_grep_index (ori, 0)->num;
+	b = l_grep_index (ori, 1)->num;
+	c = l_grep_index (ori, 2)->num;
+	if ((b < a && a < c) || (c < a && a < b))
+		return (a);
+	if ((a < b && b < c) || (c < b && b < a))
+		return (b);
+	if ((a < c && c < b) || (b < c && c < a))
+		return (c);
+	return (-1);
 }
